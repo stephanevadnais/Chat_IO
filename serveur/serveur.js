@@ -17,6 +17,19 @@ io.on('connection',(socket)=>{
         console.log('Utilisateur deconnecte')
     });
 
+    socket.emit('nouveauMessage',{
+        de:'Administration',
+        texte:'Bienvenue sur le chat',
+        dateCreation: new Date().getTime()
+    });
+
+    socket.broadcast.emit('nouveauMessage',{
+        de:'Administration',
+        texte:'Nouvel Utilisateur s est joint au groupe de discution',
+        dateCreation: new Date().getTime()
+    });
+
+
     socket.on('nouveauMessage', (nvmess)=>{
         console.log('Nouveau Message',nvmess);
 
@@ -26,7 +39,8 @@ io.on('connection',(socket)=>{
             dateCreation: new Date().getTime()
 
         });
-    })
+
+    });
 
 
 

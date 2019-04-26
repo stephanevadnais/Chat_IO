@@ -12,7 +12,7 @@ socket.on('disconnect',function(){
 
 socket.on('nouveauMessage',function(message){
 
-    console.log('Votre message a ete envoye au serveur',message);
+    console.log('De nouveau message on ete envoye',message);
 });
 
 
