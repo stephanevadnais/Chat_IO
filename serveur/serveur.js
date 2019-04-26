@@ -15,7 +15,20 @@ io.on('connection',(socket)=>{
 
     socket.on('disconnect',()=>{
         console.log('Utilisateur deconnecte')
+    });
+
+    socket.on('nouveauMessage', (nvmess)=>{
+        console.log('Nouveau Message',nvmess);
+
+        io.emit('nouveauMessage',{
+            de:nvmess.de,
+            texte:nvmess.texte,
+            dateCreation: new Date().getTime()
+
+        });
     })
+
+
 
 
 })

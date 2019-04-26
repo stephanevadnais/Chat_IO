@@ -8,17 +8,7 @@
 <p>Bienvenue sur le chat</p>
 
 <script src="/socket.io/socket.io.js" ></script>
-<script>
-   var socket = io();
-   socket.on('connect',()=>{
-       console.log('Connection etablie sur le serveur');
-   });
-
-   socket.on('disconnect',()=>{
-
-       console.log('Vous etes deconnecte du serveur');
-   })
-</script>
+<script src="js/index.js" ></script>
 
 </body>
 </html>
