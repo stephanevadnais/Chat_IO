@@ -14,6 +14,7 @@ app.use(express.static(cheminPublique));
 io.on('connection',(socket)=>{
     console.log('Nouvel utilisateur Connecte');
 
+
     socket.on('disconnect',()=>{
         console.log('Utilisateur deconnecte')
     });
