@@ -1,6 +1,7 @@
 const chemin = require('path');
 const http = require('http');
 const cheminPublique =  chemin.join(__dirname, '../publique');
+const {generationMessage} = require('./utillitaire/message');
 const port = process.env.PORT || 3000;
 const express = require('express');
 const socketIO = require('socket.io');
@@ -17,28 +18,15 @@ io.on('connection',(socket)=>{
         console.log('Utilisateur deconnecte')
     });
 
-    socket.emit('nouveauMessage',{
-        de:'Administration',
-        texte:'Bienvenue sur le chat',
-        dateCreation: new Date().getTime()
-    });
+    socket.emit('nouveauMessage',generationMessage('Administrateur','Bienvenue sur le chat'));
 
-    socket.broadcast.emit('nouveauMessage',{
-        de:'Administration',
-        texte:'Nouvel Utilisateur s est joint au groupe de discution',
-        dateCreation: new Date().getTime()
-    });
+    socket.broadcast.emit('nouveauMessage',generationMessage('Administration','Nouvel Utilisateur s est joint au groupe de discution'));
 
 
     socket.on('nouveauMessage', (nvmess)=>{
         console.log('Nouveau Message',nvmess);
 
-        io.emit('nouveauMessage',{
-            de:nvmess.de,
-            texte:nvmess.texte,
-            dateCreation: new Date().getTime()
-
-        });
+        io.emit('nouveauMessage',generationMessage(nvmess.de,nvmess.texte));
 
     });
 
