@@ -6,19 +6,26 @@
 </head>
 <body>
 <p>Bienvenue sur le chat</p>
+<p id="meteo">Meteo</p>
 <ol id="messages"></ol>
+
 
 <form id="formulaire-message">
     <input name="message" type="text" placeholder="Message"/>
     <button type="submit">Envoie</button>
-
 </form>
+
+
+<button id="envoie-geolocalisation">GeoLocation</button>
+<button id="obtenir-temperature">Temperature</button>
+
 
 
 
 <script src="/socket.io/socket.io.js" ></script>
 <script src="js/jquery-3.4.0.min.js" ></script>
 <script src="js/index.js" ></script>
+
 
 
 </body>

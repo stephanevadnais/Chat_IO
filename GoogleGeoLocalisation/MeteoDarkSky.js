@@ -48,5 +48,5 @@ var obtenirTemperature = (latitude, longitude)=> {
 
 }
 
-module.exports.obtenirTemperature = obtenirTemperature;
+module.exports = {obtenirTemperature};
 

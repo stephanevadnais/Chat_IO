@@ -1,6 +1,6 @@
 const request = require('request');
 
-var obtenirTemperature = (latitude, longitude)=> {
+var obtenirTemperature = function(latitude, longitude) {
 
     request({
         url: `https://api.darksky.net/forecast/b82d8a6f2d1d5d720ef2e24c89cededa/${latitude},${longitude}`,

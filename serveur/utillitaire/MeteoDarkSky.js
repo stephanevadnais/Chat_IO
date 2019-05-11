@@ -17,6 +17,8 @@ var obtenirTemperature = (latitude, longitude)=> {
 
         else if (reponse.statusCode === 200){
 
+
+
             var TimeStamp = page.currently.time;
             var date = new Date(TimeStamp*1000);
             var heure = date.getHours();
@@ -33,23 +35,18 @@ var obtenirTemperature = (latitude, longitude)=> {
 
             };
 
-            return{
-                Celcius,
-                HeureFormatter
-            }
-
             console.log(`Il Fait Maintenant ${Celcius} °C`);
             console.log(`Heure Locale est ${HeureFormatter}`);
+            io.emit('nouveauMessage',generationMessage('La Temperature est:',`${Celcius} °C  Votre heure locale: ${HeureFormatter}`));
 
         }
-
-
 
 
     });
 
 
 }
+
 
 module.exports = {obtenirTemperature};
 
