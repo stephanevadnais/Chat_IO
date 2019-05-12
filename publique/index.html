@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>ChatIO</title>
+
 </head>
-<body>
-<p>Bienvenue sur le chat</p>
-<p id="meteo">Meteo</p>
-<ol id="messages"></ol>
+<body class="chat">
+<div class="chat__sidebar"><h3>Utilisateur</h3></div>
+
+<div id="utilisateurs"></div>
+
+<div class="chat__main">
+    <p id="meteo"></p>
+    <ol id="messages" class="chat__messages"></ol>
+    <div class="chat__footer">
+
+    <form id="formulaire-message">
+        <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+        <button type="submit">Envoie</button>
+    </form>
+        <button id="envoie-geolocalisation">GeoLocation</button>
+    </div>
+
+</div>
 
 
-<form id="formulaire-message">
-    <input name="message" type="text" placeholder="Message"/>
-    <button type="submit">Envoie</button>
-</form>
 
-
-<button id="envoie-geolocalisation">GeoLocation</button>
-<button id="obtenir-temperature">Temperature</button>
 
 
 

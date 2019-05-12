@@ -71,20 +71,10 @@ var obtenirTemperature = (latitude, longitude)=> {
 
 }
 
-
-
-
-
-
-
-
 app.use(express.static(cheminPublique));
 io.on('connection',(socket)=>{
 
-
-
     console.log('Nouvel utilisateur Connecte');
-
 
     socket.on('disconnect',()=>{
         console.log('Utilisateur deconnecte')
@@ -92,20 +82,13 @@ io.on('connection',(socket)=>{
 
     socket.emit('nouveauMessage',generationMessage('Administrateur','Bienvenue sur le chat'));
 
-
-
-
     socket.broadcast.emit('nouveauMessage',generationMessage('Administration','Nouvel Utilisateur s est joint au groupe de discution'));
-
 
     socket.on('nouveauMessage', (nvmess,fonctionRetour)=>{
         console.log('Nouveau Message',nvmess);
 
         io.emit('nouveauMessage',generationMessage(nvmess.de,nvmess.texte));
-        fonctionRetour('Envoie du serveur');
-
-
-
+        fonctionRetour();
 
     });
 

@@ -32,14 +32,15 @@ socket.emit('creationAccuseReception',
 jQuery('#formulaire-message').on('submit',function(e){
     e.preventDefault();
 
+    var messageBoite = jQuery('[name=message]');
+
     socket.emit('nouveauMessage',{
-        de:'Formulaire',
-        texte:jQuery('[name=message]').val()
+        de:'Utilisateur',
+        texte:messageBoite.val()
 
     },function(){
-
-
-    })
+        messageBoite.val("");
+        })
 
 
 });
@@ -52,7 +53,10 @@ geo.on('click',function(){
         return alert('GeoLocation pas supporter');
     }
 
+
+
     navigator.geolocation.getCurrentPosition(function(position){
+        geo.attr('disabled', 'disabled').text("envoie de voter position....");
         socket.emit('partageGeoLocation',{
                      lat:position.coords.latitude,
                      long:position.coords.longitude
