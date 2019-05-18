@@ -6,6 +6,8 @@ const {generationMessage,generationLocalisation} = require('./utillitaire/messag
 const port = process.env.PORT || 3000;
 const express = require('express');
 const socketIO = require('socket.io');
+let date = require('date-and-time');
+var moment = require('moment');
 var app = express();
 var serveur = http.createServer(app);
 var io = socketIO(serveur);
@@ -26,21 +28,27 @@ var obtenirTemperature = (latitude, longitude)=> {
 
         else if (reponse.statusCode === 200){
 
-            var TimeStamp = page.currently.time;
-            var date = new Date(TimeStamp*1000);
-            var heure = date.getHours();
-            var minutes = "0" + date.getMinutes();
-            var secondes = "0" + date.getSeconds();
-            var HeureFormatter = heure + ':' + minutes.substr(-2) + ':' + secondes.substr(-2);
+            let maintenant = new Date();
+            date.locale('fr');
+            var dateFormater = date.format(maintenant, 'dddd D MMMM');
+
+
+             let now = new Date();
+             var heureFormater = date.format(now, 'HH:mm:ss A');
+
+
 
             //32,13 °F − 32) × 5/9 = 0 °C
             var Fahrenheit = page.currently.temperature ;
             var Celcius = ((Fahrenheit - 32) * (5/9)).toFixed(1) ;
+            var url = `https://www.google.com/maps?q=${latitude},${longitude}`;
 
             if ((page.daily.icon) === "snow"){
                 console.log("Il Y'aura accumulation de neige aujourd'hui " + ((page.daily.data[0].precipAccumulation) / 0.39370078740157).toFixed(2) + " cm ");
 
             };
+
+            console.log(url);
 
 
 
@@ -50,7 +58,9 @@ var obtenirTemperature = (latitude, longitude)=> {
             io.emit('meteoLocale',{
 
                 Celcius: `${Celcius}`,
-                HeureLocale: `${HeureFormatter}`
+                url: `${url}`,
+                dateLocale:`${dateFormater}`,
+                heureLocale:`${heureFormater}`
 
             });
 

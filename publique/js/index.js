@@ -13,10 +13,23 @@ socket.on('disconnect',function(){
 socket.on('nouveauMessage',function(message){
 
     console.log('De nouveau message on ete envoye',message);
-    var li = jQuery('<li></li>');
-    li.text(`${message.de}: ${message.texte}`);
+    var heureFormater = moment(message.dateCreation).format('h:mm a');
+    var template = jQuery('#message-template').html();
+    var html = Mustache.render(template, {
+        De: message.de,
+        texte: message.texte,
+        heure: heureFormater
+    });
 
-    jQuery('#messages').append(li);
+    jQuery('#messages').append(html);
+
+    // var heureFormater = moment(message.dateCreation).format('h:mm a');
+    // var li = jQuery('<li></li>');
+    //
+    // li.text(`De: ${message.de}  ---  Heure: ${heureFormater}  ---  Message: ${message.texte}`);
+    //
+    // jQuery('#messages').append(li);
+
 });
 
 
@@ -70,35 +83,31 @@ geo.on('click',function(){
 });
 
 
-socket.on('partageGeoLocation',function(geoLocation){
-
-    var li = jQuery('<li></li>');
-    var a = jQuery('<a target="_blank">Ma Position Geographique</a>');
-
-    li.text(`${geoLocation.De}:`);
-    a.attr('href',geoLocation.url);
-    li.append(a);
-
-    jQuery('#messages').append(li);
-
-
-});
-
-
-
 
 socket.on('meteoLocale',function(meteo){
 
-    var h3 = jQuery('<h3></h3>');
+    var template = jQuery('#geolocalisation-template').html();
+    var html = Mustache.render(template, {
+        celcius: meteo.Celcius,
+        url: meteo.url,
+        date:meteo.dateLocale,
+        heure:meteo.heureLocale
+
+    });
 
 
-    h3.text(`Aujourdhui ${meteo.HeureLocale}, il fait présentenent ${meteo.Celcius} ‎°C`);
+    jQuery('#messages').append(html);
 
-    h3.append(h3);
 
-    jQuery('#meteo').append(h3);
-
-    console.log(meteo);
+    // var h3 = jQuery('<h3></h3>');
+    // h3.text(`Aujourdhui ${meteo.heureDateFormater}, il fait présentenent ${meteo.Celcius} ‎°C `);
+    // h3.append(h3);
+    //
+    // jQuery('#meteo').append(h3);
+    //
+    //
+    //
+    // console.log(meteo);
 
 
 });

@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="css/style.css">
     <title>ChatIO</title>
 
+
+
 </head>
 <body class="chat">
 <div class="chat__sidebar"><h3>Utilisateur</h3></div>
@@ -29,11 +31,39 @@
 
 
 
+<script id="message-template" type="text/x-handlebars-template">
+ <li class="message">
+     <div class="message__title">
+         <h4>{{De}}:</h4>
+         <span>{{heure}}</span>
+     </div>
+     <div class="message__title">
+         <p>{{texte}}</p>
+     </div>
+ </li>
+</script>
+
+
+
+
+<script id="geolocalisation-template" type="text/x-handlebars-template">
+    <li class="message">
+        <div class="message__title">
+            <h4>aujourd'hui {{date}}, Il fait présentenent {{celcius}} °C  à {{heure}}</h4>
+        </div>
+        <div class="message__title"><h4><a href="{{& url }}" target="_blank">Mon emplacement actuel</a></h4></div>
+
+
+    </li>
+</script>
+
 
 
 <script src="/socket.io/socket.io.js" ></script>
-<script src="js/jquery-3.4.0.min.js" ></script>
-<script src="js/index.js" ></script>
+<script src="/js/jquery-3.4.0.min.js" ></script>
+<script src="/js/moment.js"></script>
+<script src="/js/mustache.js"></script>
+<script src="/js/index.js" ></script>
 
 
 

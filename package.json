@@ -14,7 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-and-time": "^0.6.3",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "request": "^2.88.0",
     "socket.io": "^1.4.8",
     "yargs": "^13.2.2"
