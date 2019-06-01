@@ -1,71 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>Rejoindre | Conversation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
-    <title>ChatIO</title>
-
-
-
 </head>
-<body class="chat">
-<div class="chat__sidebar"><h3>Utilisateur</h3></div>
+<body class="centered-form">
 
-<div id="utilisateurs"></div>
+<div class="centered-form__form">
+    <form action="/conversation.html">
+        <div class="form-field"><h3>Débuter une conversation</h3></div>
+        <div class="form-field"><label>Speudo</label><input type="text" name="speudo" autofocus/></div>
 
-<div class="chat__main">
-    <p id="meteo"></p>
-    <ol id="messages" class="chat__messages"></ol>
-    <div class="chat__footer">
-
-    <form id="formulaire-message">
-        <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
-        <button type="submit">Envoie</button>
+        <div class="form-field"><label>Sujet de la conversation</label><input type="text" name="sujet"/></div>
+        <div class="form-field"><button>Rejoindre</button></div>
     </form>
-        <button id="envoie-geolocalisation">GeoLocation</button>
-    </div>
-
 </div>
-
-
-
-
-
-<script id="message-template" type="text/x-handlebars-template">
- <li class="message">
-     <div class="message__title">
-         <h4>{{De}}:</h4>
-         <span>{{heure}}</span>
-     </div>
-     <div class="message__title">
-         <p>{{texte}}</p>
-     </div>
- </li>
-</script>
-
-
-
-
-<script id="geolocalisation-template" type="text/x-handlebars-template">
-    <li class="message">
-        <div class="message__title">
-            <h4>aujourd'hui {{date}}, Il fait présentenent {{celcius}} °C  à {{heure}}</h4>
-        </div>
-        <div class="message__title"><h4><a href="{{& url }}" target="_blank">Mon emplacement actuel</a></h4></div>
-
-
-    </li>
-</script>
-
-
-
-<script src="/socket.io/socket.io.js" ></script>
-<script src="/js/jquery-3.4.0.min.js" ></script>
-<script src="/js/moment.js"></script>
-<script src="/js/mustache.js"></script>
-<script src="/js/index.js" ></script>
-
-
 
 </body>
 </html>

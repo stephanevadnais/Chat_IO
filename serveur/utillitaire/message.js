@@ -1,6 +1,6 @@
 var moment = require('moment');
 
-var generationMessage = (de,texte)=>{
+var generationMessage = (de, texte) => {
 
     return {
         de,
@@ -12,27 +12,34 @@ var generationMessage = (de,texte)=>{
 };
 
 
-var generationLocalisation = (De,latitude,longitude)=>{
+var generationLocalisation = (de, latitude, longitude) => {
     return {
 
-        De,
-        url:`https://www.google.com/maps?q=${latitude},${longitude}`,
-        dateCreation: moment().valueOf()
+        de,
+        url: `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`
+
+
+
     };
 
 
 };
 
 
-var meteoLocale = (Celcius,HeureLocale)=>{
-
+var generationMeteoLocale = (de,celcius,fahrenheit,pression) => {
     return {
-        Celcius,
-        HeureLocale,
-        dateCreation: new Date().getTime()
-
+        de,
+        celcius:`${celcius}`,
+        fahrenheit: `${fahrenheit}`,
+        pression: `${pression}`
 
     };
+
+
 };
 
-module.exports = {generationMessage,generationLocalisation};
+
+
+
+
+module.exports = {generationMessage, generationLocalisation,generationMeteoLocale};

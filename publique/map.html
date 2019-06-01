@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Localisation</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map-template"></div>
+
+
+<script>
+    var geo = jQuery('#envoie-map');
+
+    geo.on('click', function () {
+        if (!navigator.geolocation) {
+            return alert('GeoLocation pas supporter');
+        }
+
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            geo.attr('disabled', 'disabled').text("envoie vers carte geographique....");
+
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map-template'), {
+                    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+                    zoom: 8
+                });
+            }
+
+        }), function () {
+
+            alert('Probleme de permission')
+        }
+
+    });
+
+</script>
+
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=+CA&key=AIzaSyDWcVL1o5b246aKep4UXQNVyGUvk4MW9n4&callback=initMap"
+        async defer></script>
+</body>
+</html>

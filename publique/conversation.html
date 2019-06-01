@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Rejoindre | Conversation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+
+
+</head>
+<body class="chat">
+<div class="chat__sidebar"><h3>Utilisateur</h3><div id="utilisateurs"></div></div>
+
+
+<div class="chat__main">
+    <p id="meteo"></p>
+    <ol id="messages" class="chat__messages"></ol>
+    <div class="chat__footer">
+
+    <form id="formulaire-message">
+        <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+        <button type="submit">Envoie</button>
+    </form>
+        <button id="envoie-geolocalisation">GeoLocation</button>
+    </div>
+
+</div>
+
+
+
+
+
+<script id="message-template" type="text/x-handlebars-template">
+ <li class="message">
+     <div class="message__title">
+         <h4>{{De}} :</h4>
+         <span>{{heure}}</span>
+     </div>
+     <div class="message__title">
+         <p>{{texte}}</p>
+     </div>
+ </li>
+</script>
+
+
+
+
+<script id="geolocalisation-template" type="text/x-handlebars-template">
+    <li class="message">
+        <div class="message__title">
+            <h4>{{de}} :</h4>
+        </div>
+        <div class="message__title"><h4><a href="{{& url }}" target="_blank">Mon emplacement actuel</a></h4></div>
+    </li>
+</script>
+
+
+<script id="meteo-template" type="text/x-handlebars-template">
+    <li class="message">
+        <div class="message__title">
+            <h4>{{de}} :</h4>
+            <h4>La température en Celcius est  {{celcius}} °C</h4>
+            <h4>et en Fahrenheit {{fahrenheit}} °F</h4>
+        </div>
+        <div class="message__title"><h4>La presion barometrique est {{pression }}</h4></div>
+
+
+
+    </li>
+</script>
+
+
+
+
+<script src="/socket.io/socket.io.js" ></script>
+<script src="/js/jquery-3.4.0.min.js" ></script>
+<script src="/js/moment.js"></script>
+<script src="/js/mustache.js"></script>
+<script src="/js/deparam.js"></script>
+<script src="/js/conversation.js" ></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=+CA&key=AIzaSyDWcVL1o5b246aKep4UXQNVyGUvk4MW9n4&callback=initMap"
+        async defer></script>
+
+</body>
+</html>
